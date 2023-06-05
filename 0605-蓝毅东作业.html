@@ -16,3 +16,18 @@
     3）不管是ECG还是EC（函数名），都会放在ECS（执行上下文栈）中 执行上文栈是一个杯子
 三 说一下，什么是作用域链，你是怎么理解作用域链的？
     作用域链，自己的局部变量(VO)+父级的数据(VO) 在函数中就是局部变量 在ECG中就是GO
+    <script>
+        var n = 100;
+    
+        function fn() {
+            console.log(n);
+        }
+    
+        function gn() {
+            var n = 200;
+            console.log(n);
+            fn()
+        }
+        gn()
+        console.log(n);
+    </script
