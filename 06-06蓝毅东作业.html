@@ -1,0 +1,118 @@
+<!-- <script>
+    console.log(fn)  // und 只提升声明
+    if (1 == 1) {
+        console.log(fn)  // fn函数体 log ok
+
+        function fn() {
+            console.log("ok")
+        }
+    }
+    console.log(fn) // fn函数体 ok
+</script> -->
+<!-- <script>
+    console.log(num) // und
+    console.log(fn) // und
+    if ([]) {
+
+        fn() 
+        var num = 100
+
+        function fn() {
+            console.log("a") // a 
+        }
+    }
+    console.log(fn); // fn函数体
+</script> -->
+<!-- <script>
+    function fn(i) {
+        return function (n) {
+            console.log(n + (++i))
+        }
+    }
+    var f = fn(2)
+    f(3) //6
+    fn(5)(6) //12
+    fn(7)(8) //16
+    f(4) //8
+</script> -->
+<!-- <script>
+    var foo = "hello";
+    (function (foo) {
+        console.log(foo) // hello 
+        var foo = foo || "word"
+        console.log(foo) //  hello
+    })(foo)
+    console.log(foo); //hello
+</script> -->
+<!-- <script>
+    var a = 9
+
+    function fn() {
+        a = 0
+        return function (b) {
+            return b + a++
+        }
+    }
+    var f = fn()
+    console.log(f(5)) // 5
+    console.log(fn()(5)) //5
+    console.log(f(5)) // 6
+    console.log(a); //2
+</script> -->
+
+<!-- <script>
+    let obj = {
+        x: 1,
+        y: [10, 20]
+    }
+    let obj2 = obj
+    let obj3 = {
+        ...obj2
+    }
+    obj2.x = 100 // obj1.x = 100
+    obj2.y[1] = 30 // obj1[1] = 30
+    obj3.x = 200
+    obj3.y[2] = 40
+    obj = obj3.y = {
+        x: 0,
+        y: [1, 2]
+    }
+    console.log(obj, obj2, obj3);
+/*
+        obj{
+            x:0,
+            y:[1,2]
+        }
+        obj2{
+            x:100,
+            y:[10,30,20]
+        }
+        obj3{
+            x:200
+            y:{
+                x:0
+                y:[1,2]
+            }
+        }
+*/
+</script> -->
+<!-- <script>
+    let a = ?  //Uncaught SyntaxError: Unexpected token '?'
+    if (a == 1 && a == 2 && a == 3) {
+        console.log('OK')
+    }
+</script> -->
+<!-- <script>
+    let arr = [12.5, 100, 0013, '27px', 456]
+    arr = arr.map(parseInt);
+    console.log(arr) // 12,NaN,3,2,NaN
+</script> -->
+
+<!-- <script>
+    var b = 10;
+    (function b() {
+        b = 20
+        console.log(b) // b
+    })()
+    console.log(b); // 10
+</script> -->
