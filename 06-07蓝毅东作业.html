@@ -1,0 +1,119 @@
+<!-- 一. 总结this绑定方案（谈谈你对this的理解？）（重要）
+1）默认绑定：函数调用，在浏览器中独立函数调用，函数的this表示window
+2）隐式绑定：通过对象.调用的 函数中的this就是这个对象
+3）显示绑定：通过对象属性和方法
+    1> 函数名call（参数），第一个参数是谁this就是谁
+    2> 函数名apply（参数），第一个参数是谁this就是谁
+    3> 函数名bind（参数），第一个参数是谁this就是谁,会返回一个绑定好this的函数
+三. new做了什么？使用原生JS模拟new的实现？（选做）
+   1)在函数内部创建了一个对象
+   2)把函数的this绑定给了创建的这个对象
+   3)函数执行
+   4) 返回这个对象（new完后，肯定能得到一个对象） -->
+<script>
+    // 手写New
+    function myNew (fn){
+        let obj = {}
+        obj.__proto__ = fn.prototype
+        fn.call(obj)
+        return obj
+    }
+   </script>
+<!-- <script>
+    function fn(num1, num2) {
+        return num3 => num1 + num2 + num3
+    }
+    let res = fn(1, 2)(3)
+    console.log(res) //=>6 1+2+3
+</script> -->
+<!-- <script>
+    window.val = 1
+    var json = {
+        val: 10,
+        dbl: function () {
+            this.val *= 2
+        }
+    }
+    json.dbl() // json.val:20
+    var dbl = json.dbl
+    dbl() // window.val = 2
+    json.dbl.call(window) // window.val = 4
+    alert(window.val + json.val); //24
+</script> -->
+<!-- <script>
+    let obj = {
+        fn: (function () {
+            return function () {
+                console.log(this)
+            }
+        })()
+    }
+    obj.fn() // obj
+    let fn = obj.fn
+    fn(); // window
+</script> -->
+<!-- <script>
+    (function () {
+        var val = 1
+        var json = {
+            val: 10, 
+            dbl: function () {
+                val *= 2 //2 
+            }
+        }
+        json.dbl()  
+        alert(json.val + val) // 12
+    })();
+</script> -->
+<!-- 
+八. 遍历对象都有哪些方案？遍历数组都有哪些方案？
+    遍历对象：
+        1) for in 
+        2)Object.getOwnPropertyNames() 方法
+    遍历数组：
+        1) for 循环
+        2) forEach()
+        3) map() 方法
+        4) reduce() 方法
+        5) for…of 循环
+九. 创建对象都有哪些方案，都有哪些缺点？
+    创建对象的方案主要有以下几种：
+
+1. 对象字面量
+2. 工厂函数
+3. 构造函数
+4. 原型模式
+5. 组合使用构造函数和原型模式（常用）
+
+不同创建对象的方式各自有其优缺点，具体如下：
+
+1.对象字面量
+
+优点：简单快捷，易于理解和使用；不需要调用构造函数，也不需要定义新的类型。
+
+缺点：不太适合创建需要重复构建的对象，如在多处创建相同的对象时，需要重复创建相同的代码。
+
+2.工厂函数
+
+优点：通过函数封装了对象创建过程，简化了代码结构，代码复用性高。
+
+缺点：无法确定对象的类型，所有对象都是同一个类型。
+
+3.构造函数
+
+优点：可以确定对象的类型，可以使用 new 关键字创建实例对象。
+
+缺点：每个新创建的实例对象都有自己的方法，会导致重复浪费内存，影响性能。
+
+4.原型模式
+
+优点：原型模式可以使多个对象共享相同的属性和方法，代码简洁、性能高。
+
+缺点：需要注意的是如果多个对象共享同一份原型时，当一个对象的属性被修改时，会影响到其他对象，可能导致不可预期的结果。
+
+5.组合使用构造函数和原型模式（常用）
+
+优点：利用构造函数初始化对象的特性可以创建安全的对象；利用原型链实现方法的共享，节省内存。
+
+缺点：相对于构造函数方式，原型的多次访问会影响性能。
+ -->
